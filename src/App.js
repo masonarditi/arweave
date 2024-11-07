@@ -2,6 +2,11 @@ import "./App.css";
 import { ArweaveWalletKit, ConnectButton } from "arweave-wallet-kit";
 import { message, createDataItemSigner, result } from "@permaweb/aoconnect";
 import { useState } from "react";
+import React from 'react';
+import Map from './Map';
+import 'mapbox-gl/dist/mapbox-gl.css'; // Import Mapbox CSS
+
+
 
 function App() {
 		const [userMessage, setUserMessage] = useState("")
@@ -32,6 +37,7 @@ function App() {
 		        ensurePermissions: true
 		    }}>
 				    <div className="App">
+              <Map  />
 						    <h1>dumnotes</h1>
 						    <ConnectButton profileModal={true} />
 						    <input 
