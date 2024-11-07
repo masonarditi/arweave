@@ -49,16 +49,17 @@ function App() {
 								 <button onClick={sendAOMessage}>send message</button>
 								 <p>{messageResponse || ""}</p>
 					  </div>
-            <div className="center">
+            <div className="center" style={{textAlign: 'center'}}>
               <p>
-		        Check out some images you can use{" "}
-                <a
-		     href="https://app.ardrive.io/#/file/cf9eb09c-d69a-4552-ba0d-ec73370719ba/view?fileKey=jYbC-Am0uGJzBMZP4FaZoz15WAxj9mSqPAlIy6uRnZ4" //image deployed on the arDrive
+		        Images stored on arDrive {" "}
+                <a className="lp-50"
+		     href="https://app.ardrive.io/#/file/fec52c0d-6186-47d4-9444-cb93ac9d1891/view" //image deployed on the arDrive
 		     target="_blank"
 		     rel="noopener noreferrer"
                   >
 				 here
 		            </a>
+                ! Forever!
               </p>
             </div>
 			  </ArweaveWalletKit>
