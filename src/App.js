@@ -59,7 +59,7 @@ function App() {
 				<Map searchQuery={searchQuery} />
 			  </div>
 				<h1>dumnotes</h1>
-				<arweaveWalletKit.ConnectButton profileModal={true}/>
+				<ConnectButton profileModal={true}/>
 					<input 
 						type="text"
 						value={userMessage}
