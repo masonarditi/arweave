@@ -20,6 +20,12 @@ function App() {
     const handleMessageChange = (event) => {
         setUserMessage(event.target.value);
     };
+
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const handleSearchChange = (e) => {
+      setSearchQuery(e.target.value);
+    };
     
     async function sendAOMessage() {
 		    const response = await message({
@@ -40,8 +46,10 @@ function App() {
 		    permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION"],
 			ensurePermissions: true
 		    }}>
+			
+				
 			<div className="App text-left">
-			  <div className="flex items-center ml-1">
+			    <div className="flex items-center ml-1">
                     <h1>Arweave Museum Archive</h1>
 			  </div>
 			  <Card>
@@ -49,6 +57,11 @@ function App() {
 					<CardTitle className="text-blue-500">This is a header</CardTitle></CardHeader>
 			  </Card>
 			  <Map/>
+            	</div>
+				<div>
+					
+					<Map searchQuery={searchQuery} />
+				</div>
 				<h1>dumnotes</h1>
 				<arweaveWalletKit.ConnectButton profileModal={true}/>
 					<input 
