@@ -16,6 +16,12 @@ function App() {
     const handleMessageChange = (event) => {
         setUserMessage(event.target.value);
     };
+
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const handleSearchChange = (e) => {
+      setSearchQuery(e.target.value);
+    };
     
     async function sendAOMessage() {
 		    const response = await message({
@@ -37,7 +43,15 @@ function App() {
 		        ensurePermissions: true
 		    }}>
 				    <div className="App">
-              <Map  />
+              <div>
+                <input
+                    type="text"
+                    placeholder="Search for a location"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                />
+                <Map searchQuery={searchQuery} />
+              </div>
 						    <h1>dumnotes</h1>
 						    <ConnectButton profileModal={true} />
 						    <input 
