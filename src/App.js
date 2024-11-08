@@ -5,7 +5,12 @@ import { useState } from "react";
 import React from 'react';
 import Map from './Map';
 import 'mapbox-gl/dist/mapbox-gl.css'; 
-import { Button } from "./components/ui/button";
+import {
+	Card,
+	CardHeader,
+	CardTitle,
+  } from "./components/ui/card"
+
 
 function App() {
 		const [userMessage, setUserMessage] = useState("")
@@ -39,7 +44,10 @@ function App() {
 			  <div className="flex items-center ml-1">
                     <h1>Arweave Museum Archive</h1>
 			  </div>
-                <Button>Click me</Button>
+			  <Card>
+				<CardHeader>
+					<CardTitle className="text-blue-500">This is a header</CardTitle></CardHeader>
+			  </Card>
 			  <Map/>
 				<h1>dumnotes</h1>
 				<arweaveWalletKit.ConnectButton profileModal={true}/>
