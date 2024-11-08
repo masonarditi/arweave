@@ -1,12 +1,11 @@
 import "./App.css";
-import { ArweaveWalletKit, ConnectButton } from "arweave-wallet-kit";
+import * as arweaveWalletKit from "arweave-wallet-kit";
 import { message, createDataItemSigner, result } from "@permaweb/aoconnect";
 import { useState } from "react";
 import React from 'react';
 import Map from './Map';
-import 'mapbox-gl/dist/mapbox-gl.css'; // Import Mapbox CSS
-
-
+import 'mapbox-gl/dist/mapbox-gl.css'; 
+import { Button } from "./components/ui/button";
 
 function App() {
 		const [userMessage, setUserMessage] = useState("")
@@ -32,18 +31,18 @@ function App() {
     }
     
 	return (
-        <ArweaveWalletKit config={{
+        <arweaveWalletKit.ArweaveWalletKit config={{
 		    permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION"],
 			ensurePermissions: true
 		    }}>
-			
 			<div className="App text-left">
 			  <div className="flex items-center ml-1">
                     <h1>Arweave Museum Archive</h1>
-                </div>
+			  </div>
+                <Button>Click me</Button>
 			  <Map/>
 				<h1>dumnotes</h1>
-				<ConnectButton profileModal={true}/>
+				<arweaveWalletKit.ConnectButton profileModal={true}/>
 					<input 
 						type="text"
 						value={userMessage}
@@ -71,7 +70,7 @@ function App() {
                 ! Forever!
               </p>
             </div>
-		</ArweaveWalletKit>
+		</arweaveWalletKit.ArweaveWalletKit>
 	  );
 }
 
