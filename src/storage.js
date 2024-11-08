@@ -4,7 +4,7 @@ import { message, createDataItemSigner, result } from "@permaweb/aoconnect";
 import { useState } from "react";
 import React from 'react';
 import Map from './Map';
-import 'mapbox-gl/dist/mapbox-gl.css'; 
+import 'mapbox-gl/dist/mapbox-gl.css'; // Import Mapbox CSS
 import {
 	Card,
 	CardHeader,
@@ -42,43 +42,41 @@ function App() {
     }
     
 	return (
-		<div>
         <ArweaveWalletKit config={{
 		    permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION"],
 			ensurePermissions: true
 		    }}>
-			<React.Fragment>
-				<div className="App text-left">
-				    <div className="flex items-center ml-1">
-                        <h1>Arweave Museum Archive</h1>
-				  </div>
-				  	<Card>
-						<CardHeader>
-							<CardTitle className="text-blue-500">This is a header</CardTitle></CardHeader>
-				  	</Card>
-                	</div>
+			
+				
+			<div className="App text-left">
+			    <div className="flex items-center ml-1">
+                    <h1>Arweave Museum Archive</h1>
+            	</div>
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-blue-500">This is a header</CardTitle></CardHeader>
+			    </Card>
 				<div>
-					<>
-						<Map searchQuery={searchQuery} />
-						<h1>dumnotes</h1>
-						<ConnectButton profileModal={true}/>
-						<input 
-							type="text"
-							value={userMessage}
-							onChange={handleMessageChange}
-							placeholder="Hello World!" 
-							className="border rounded px-2 py-1"
-						/>
-						<button 
-							onClick={sendAOMessage}
-							className="bg-blue-500 text-white px-4 py-1 rounded ml-2 hover:bg-blue-600"
-						>
-							send message
-						</button>
-						<p>{messageResponse || ""}</p>
-					</>
+					
+					<Map searchQuery={searchQuery} />
 				</div>
-			</React.Fragment>
+				<h1>dumnotes</h1>
+				<ConnectButton profileModal={true}/>
+					<input 
+						type="text"
+						value={userMessage}
+						onChange={handleMessageChange}
+						placeholder="Hello World!" 
+						className="border rounded px-2 py-1"
+					/>
+				<button 
+					onClick={sendAOMessage}
+					className="bg-blue-500 text-white px-4 py-1 rounded ml-2 hover:bg-blue-600"
+				>
+					send message
+				</button>
+				<p>{messageResponse || ""}</p>
+			</div>
             <div className="text-center">
               <p>
 		        Images stored on arDrive {" "}
@@ -92,7 +90,6 @@ function App() {
               </p>
             </div>
 		</ArweaveWalletKit>
-		</div>
 	  );
 }
 
