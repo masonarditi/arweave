@@ -37,27 +37,36 @@ function App() {
 			ensurePermissions: true
 		    }}>
 			
-			<div className="App">
-              <Map/>
+			<div className="App text-left">
+			  <div className="flex items-center ml-1">
+                    <h1>Arweave Museum Archive</h1>
+                </div>
+			  <Map/>
 				<h1>dumnotes</h1>
-				<ConnectButton profileModal={true} />
+				<ConnectButton profileModal={true}/>
 					<input 
 						type="text"
 						value={userMessage}
 						onChange={handleMessageChange}
 						placeholder="Hello World!" 
+						className="border rounded px-2 py-1"
 					/>
-				<button onClick={sendAOMessage}>send message</button>
+				<button 
+					onClick={sendAOMessage}
+					className="bg-blue-500 text-white px-4 py-1 rounded ml-2 hover:bg-blue-600"
+				>
+					send message
+				</button>
 				<p>{messageResponse || ""}</p>
 			</div>
-            <div className="center" style={{textAlign: 'center'}}>
+            <div className="text-center">
               <p>
 		        Images stored on arDrive {" "}
-                <a className="lp-50"
+                <a className="text-blue-500 hover:text-blue-700"
 					href="https://app.ardrive.io/#/file/fec52c0d-6186-47d4-9444-cb93ac9d1891/view" //image deployed on the arDrive
 					target="_blank"
 					rel="noopener noreferrer">
-				 here
+					here
 				</a>
                 ! Forever!
               </p>
