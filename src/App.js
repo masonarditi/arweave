@@ -49,12 +49,7 @@ function App() {
                     <h1>Arweave Museum Archive</h1>
             	</div>
 				<div>
-					<input
-						type="text"
-						placeholder="Search for a location"
-						value={searchQuery}
-						onChange={handleSearchChange}
-					/>
+					
 					<Map searchQuery={searchQuery} />
 				</div>
 				<h1>dumnotes</h1>
