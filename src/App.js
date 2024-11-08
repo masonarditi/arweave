@@ -13,13 +13,17 @@ import {
 
 
 function App() {
-		const [userMessage, setUserMessage] = useState("")
+	const [userMessage, setUserMessage] = useState("")
     const [messageResponse, setMessageResponse] = useState(null)
     const myProcess = "EIRymq4W1WZPxZBktGzbi4XXkH29aUYwhrzjbn4WOhE" // change with smart contract ID
     
     const handleMessageChange = (event) => {
         setUserMessage(event.target.value);
     };
+	const [searchQuery, setSearchQuery] = useState('');
+	const handleSearchChange = (e) => {
+		setSearchQuery(e.target.value);
+	};
     
     async function sendAOMessage() {
 		    const response = await message({
@@ -48,7 +52,9 @@ function App() {
 				<CardHeader>
 					<CardTitle className="text-blue-500">This is a header</CardTitle></CardHeader>
 			  </Card>
-			  <Map/>
+			  <div>
+				<Map searchQuery={searchQuery} />
+			  </div>
 				<h1>dumnotes</h1>
 				<arweaveWalletKit.ConnectButton profileModal={true}/>
 					<input 
