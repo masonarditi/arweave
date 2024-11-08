@@ -47,38 +47,34 @@ function App() {
 		    permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION"],
 			ensurePermissions: true
 		    }}>
-			<React.Fragment>
-				<div className="App text-left">
-				    <div className="flex items-center ml-1">
-                        <h1>Arweave Museum Archive</h1>
-				  </div>
-				  	<Card>
-						<CardHeader>
-							<CardTitle className="text-blue-500">This is a header</CardTitle></CardHeader>
-				  	</Card>
-                	</div>
-				<div>
-					<>
-						<Map searchQuery={searchQuery} />
-						<h1>dumnotes</h1>
-						<ConnectButton profileModal={true}/>
-						<input 
-							type="text"
-							value={userMessage}
-							onChange={handleMessageChange}
-							placeholder="Hello World!" 
-							className="border rounded px-2 py-1"
-						/>
-						<button 
-							onClick={sendAOMessage}
-							className="bg-blue-500 text-white px-4 py-1 rounded ml-2 hover:bg-blue-600"
-						>
-							send message
-						</button>
-						<p>{messageResponse || ""}</p>
-					</>
-				</div>
-			</React.Fragment>
+			<div className="App text-left">
+			  <div className="flex items-center ml-1">
+                    <h1>Arweave Museum Archive</h1>
+			  </div>
+			  <Card>
+				<CardHeader>
+					<CardTitle className="text-blue-500">This is a header</CardTitle></CardHeader>
+			  </Card>
+			  <div>
+				<Map searchQuery={searchQuery} />
+			  </div>
+				<h1>dumnotes</h1>
+				<arweaveWalletKit.ConnectButton profileModal={true}/>
+					<input 
+						type="text"
+						value={userMessage}
+						onChange={handleMessageChange}
+						placeholder="Hello World!" 
+						className="border rounded px-2 py-1"
+					/>
+				<button 
+					onClick={sendAOMessage}
+					className="bg-blue-500 text-white px-4 py-1 rounded ml-2 hover:bg-blue-600"
+				>
+					send message
+				</button>
+				<p>{messageResponse || ""}</p>
+			</div>
             <div className="text-center">
               <p>
 		        Images stored on arDrive {" "}
