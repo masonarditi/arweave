@@ -1,4 +1,4 @@
-import "./App.css";
+//import "globals.css";
 import { ArweaveWalletKit, ConnectButton } from "arweave-wallet-kit";
 import { message, createDataItemSigner, result } from "@permaweb/aoconnect";
 import { useState } from "react";
@@ -8,9 +8,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import {
 	Card,
 	CardHeader,
+	CardDescription,
 	CardTitle,
-  } from "./components/ui/card"
-
+  } from "./components/ui/card";
+import { Button } from "./components/ui/button";
 
 function App() {
 	const [userMessage, setUserMessage] = useState("")
@@ -43,18 +44,22 @@ function App() {
     
 	return (
 		<div>
+		
         <ArweaveWalletKit config={{
 		    permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION"],
 			ensurePermissions: true
 		    }}>
-			<div className="App text-left">
+			<div className="text-left">
 			  <div className="flex items-center ml-1">
                     <h1>Arweave Museum Archive</h1>
 			  </div>
 			  <Card>
 				<CardHeader>
-					<CardTitle className="text-blue-500">This is a header</CardTitle></CardHeader>
+					<CardTitle>This is a header</CardTitle></CardHeader>
+					<CardDescription>this is descript</CardDescription>
 			  </Card>
+
+			  <Button>Click me baby</Button>
 			  <div>
 				<Map searchQuery={searchQuery} />
 			  </div>
