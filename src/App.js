@@ -37,46 +37,46 @@ function App() {
 		    setMessageResponse(r.Messages[0].Data)
     }
     
-    return (
+	return (
         <ArweaveWalletKit config={{
-		        permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION"],
-		        ensurePermissions: true
+		    permissions: ["ACCESS_ADDRESS", "SIGN_TRANSACTION"],
+			ensurePermissions: true
 		    }}>
-				    <div className="App">
-              <div>
-                <input
-                    type="text"
-                    placeholder="Search for a location"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                />
-                <Map searchQuery={searchQuery} />
-              </div>
-						    <h1>dumnotes</h1>
-						    <ConnectButton profileModal={true} />
-						    <input 
-								    type="text"
-								    value={userMessage}
-								    onChange={handleMessageChange}
-								    placeholder="Hello World!" 
-								 />
-								 <button onClick={sendAOMessage}>send message</button>
-								 <p>{messageResponse || ""}</p>
-					  </div>
+			
+			<div className="App">
+				<div>
+					<input
+						type="text"
+						placeholder="Search for a location"
+						value={searchQuery}
+						onChange={handleSearchChange}
+					/>
+					<Map searchQuery={searchQuery} />
+				</div>
+				<h1>dumnotes</h1>
+				<ConnectButton profileModal={true} />
+					<input 
+						type="text"
+						value={userMessage}
+						onChange={handleMessageChange}
+						placeholder="Hello World!" 
+					/>
+				<button onClick={sendAOMessage}>send message</button>
+				<p>{messageResponse || ""}</p>
+			</div>
             <div className="center" style={{textAlign: 'center'}}>
               <p>
 		        Images stored on arDrive {" "}
                 <a className="lp-50"
-		     href="https://app.ardrive.io/#/file/fec52c0d-6186-47d4-9444-cb93ac9d1891/view" //image deployed on the arDrive
-		     target="_blank"
-		     rel="noopener noreferrer"
-                  >
+					href="https://app.ardrive.io/#/file/fec52c0d-6186-47d4-9444-cb93ac9d1891/view" //image deployed on the arDrive
+					target="_blank"
+					rel="noopener noreferrer">
 				 here
-		            </a>
+				</a>
                 ! Forever!
               </p>
             </div>
-			  </ArweaveWalletKit>
+		</ArweaveWalletKit>
 	  );
 }
 
