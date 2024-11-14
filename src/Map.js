@@ -11,6 +11,7 @@ const Map = () => {
     const [locationName, setLocationName] = useState('');
     const [pins, setPins] = useState([]);
     const [suggestions, setSuggestions] = useState([]);
+    const [markers, setMarkers] = useState([]);
 
     // Define preset pins
     const presetPins = [
@@ -50,7 +51,7 @@ const Map = () => {
 
         // Add preset pins to the map
         presetPins.forEach(pin => {
-            new mapboxgl.Marker({ color: 'red' }) // Set marker color to red
+            const marker = new mapboxgl.Marker({ color: 'red' }) // Set marker color to red
                 .setLngLat([pin.lng, pin.lat])
                 .setPopup(new mapboxgl.Popup().setText(pin.name)) // Optional: Add a popup with the location name
                 .addTo(newMap);
@@ -66,9 +67,10 @@ const Map = () => {
         if (map) {
             savedPins.forEach(pin => {
                 if (typeof pin.lng === 'number' && typeof pin.lat === 'number') {
-                    new mapboxgl.Marker()
+                    const marker = new mapboxgl.Marker() // Create a new marker
                         .setLngLat([pin.lng, pin.lat])
                         .addTo(map);
+                    setMarkers(prevMarkers => [...prevMarkers, marker]); // Store the marker
                 } else {
                     console.error("Invalid pin data:", pin);
                 }
@@ -131,9 +133,28 @@ const Map = () => {
             return updatedPins;
         });
 
-        new mapboxgl.Marker()
+        const marker = new mapboxgl.Marker()
             .setLngLat(coordinates)
             .addTo(map);
+        setMarkers(prevMarkers => [...prevMarkers, marker]); // Store the new marker
+    };
+
+    // Function to clear all added pins except preset pins
+    const handleClearPins = () => {
+        setPins([]); // Clear the state
+        localStorage.removeItem('pins'); // Clear from localStorage
+
+        // Remove all markers from the map
+        markers.forEach(marker => marker.remove()); // Remove each marker from the map
+        setMarkers([]); // Clear the markers array
+
+        // Re-add preset pins
+        presetPins.forEach(pin => {
+            new mapboxgl.Marker({ color: 'red' }) // Set marker color to red
+                .setLngLat([pin.lng, pin.lat])
+                .setPopup(new mapboxgl.Popup().setText(pin.name))
+                .addTo(map);
+        });
     };
 
     return (
@@ -159,12 +180,18 @@ const Map = () => {
                     ))}
                 </ul>
             )}
-            <div style={{ display: 'flex', gap: '8px' }}>
+            <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
                 <button onClick={handleSearch} className="border rounded px-2 py-1">
                     Search
                 </button>
                 <button onClick={handleAddPin} className="border rounded px-2 py-1">
                     Add Pin
+                </button>
+                <button 
+                    onClick={handleClearPins} 
+                    style={{ backgroundColor: 'red', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '4px' }}
+                >
+                    Clear Added Pins
                 </button>
             </div>
             <div id="mapContainer" style={{ width: '100%', height: '400px' }}></div>
