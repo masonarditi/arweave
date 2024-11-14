@@ -16,6 +16,14 @@ const Map = () => {
             zoom: 10, // Default zoom level
         });
 
+        // Load pins from local storage
+        const savedPins = JSON.parse(localStorage.getItem('pins')) || [];
+        savedPins.forEach(pin => {
+            new mapboxgl.Marker()
+                .setLngLat(pin)
+                .addTo(newMap);
+        });
+
         newMap.addControl(new mapboxgl.NavigationControl(), 'top-right');
         setMap(newMap);
 
@@ -40,6 +48,18 @@ const Map = () => {
         }
     };
 
+    const handleAddPin = (e) => {
+        const coordinates = map.getCenter(); // Get the current center of the map
+        new mapboxgl.Marker() // Create a new marker
+            .setLngLat(coordinates) // Set the marker's position
+            .addTo(map); // Add the marker to the map
+
+        // Save the pin to local storage
+        const savedPins = JSON.parse(localStorage.getItem('pins')) || [];
+        savedPins.push(coordinates);
+        localStorage.setItem('pins', JSON.stringify(savedPins));
+    };
+
     return (
         <div>
             <input
@@ -54,6 +74,14 @@ const Map = () => {
                 }}
                 className="border rounded px-2 py-1"
             />
+            <div style={{ display: 'flex', gap: '8px' }}>
+                <button onClick={handleSearch} className="border rounded px-2 py-1">
+                    Search
+                </button>
+                <button onClick={handleAddPin} className="border rounded px-2 py-1">
+                    Add Pin
+                </button>
+            </div>
             <div id="mapContainer" style={{ width: '100%', height: '400px' }}></div>
         </div>
     );
