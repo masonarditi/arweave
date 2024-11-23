@@ -12,6 +12,7 @@ import {
 	CardTitle,
   } from "./components/ui/card";
 import { Button } from "./components/ui/button";
+import UploadAndDisplayImage from "./components/ui/DisplayAndUploadImage"
 
 function App() {
 	const [userMessage, setUserMessage] = useState("")
@@ -21,6 +22,8 @@ function App() {
     const handleMessageChange = (event) => {
         setUserMessage(event.target.value);
     };
+
+
 
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -41,8 +44,9 @@ function App() {
 		    });
 		    setMessageResponse(r.Messages[0].Data)
     }
-    
+	
 	return (
+		
 		<div>
 		
         <ArweaveWalletKit config={{
@@ -62,6 +66,7 @@ function App() {
 			  <Button>Click me baby</Button>
 			  <div>
 				<Map searchQuery={searchQuery} />
+
 			  </div>
 				<h1>dumnotes</h1>
 				<ConnectButton profileModal={true}/>
@@ -72,7 +77,8 @@ function App() {
 						placeholder="Hello World!" 
 						className="border rounded px-2 py-1"
 					/>
-				<button 
+					
+				<button 	
 					onClick={sendAOMessage}
 					className="bg-blue-500 text-white px-4 py-1 rounded ml-2 hover:bg-blue-600"
 				>
@@ -80,18 +86,10 @@ function App() {
 				</button>
 				<p>{messageResponse || ""}</p>
 			</div>
-            <div className="text-center">
-              <p>
-		        Images stored on arDrive {" "}
-                <a className="text-blue-500 hover:text-blue-700"
-					href="https://app.ardrive.io/#/file/fec52c0d-6186-47d4-9444-cb93ac9d1891/view" //image deployed on the arDrive
-					target="_blank"
-					rel="noopener noreferrer">
-					here
-				</a>
-                ! Forever!
-              </p>
-            </div>
+
+			<div className="App">
+				<UploadAndDisplayImage /> 
+			</div>
 		</ArweaveWalletKit>
 		</div>
 	  );
